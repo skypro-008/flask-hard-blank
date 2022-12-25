@@ -24,6 +24,8 @@ class GenreDAO:
     def create(self, data):
         with self.session.begin():
             self.session.add(Genre(**data))
+            last = self._query().order_by(Genre.id.desc()).limit(1).all()
+        return last
 
     def update(self, data, gid):
         with self.session.begin():

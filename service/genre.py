@@ -19,6 +19,8 @@ class GenreService:
 
     def create(self, data):
         self.dao.create(data)
+        added_genre_id = self.dao.create(data)[0].id
+        return added_genre_id
 
     def update(self, data, gid):
         self.dao.update(data, gid)

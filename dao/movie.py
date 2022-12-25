@@ -44,6 +44,8 @@ class MovieDAO:
     def create(self, data):
         with self.session.begin():
             self.session.add(Movie(**data))
+            last = self._query().order_by(Movie.id.desc()).limit(1).all()
+        return last
 
     def update(self, data, mid):
         with self.session.begin():

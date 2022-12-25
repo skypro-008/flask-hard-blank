@@ -15,7 +15,8 @@ class GenresView(Resource):
     def post(self):
         data = request.json
         genre_service.create(data)
-        return "added!", 201
+        added_genre_id = genre_service.create(data)
+        return "added!", 201, {'location': f'/movies/{added_genre_id}'}
 
 
 @genre_ns.route('/<int:gid>')

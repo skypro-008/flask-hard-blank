@@ -18,7 +18,8 @@ class MovieService:
         return serialize_movie
 
     def create(self, data):
-        self.dao.create(data)
+        added_movie = self.dao.create(data)[0].id
+        return added_movie
 
     def update(self, data, mid):
         self.dao.update(data, mid)

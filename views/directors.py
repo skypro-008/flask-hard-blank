@@ -15,7 +15,8 @@ class DirectorsView(Resource):
     def post(self):
         data = request.json
         director_service.create(data)
-        return "added!", 201
+        added_director_id = director_service.create(data)
+        return "added!", 201, {'location': f'/movies/{added_director_id}'}
 
 
 @director_ns.route('/<int:gid>')

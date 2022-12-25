@@ -19,6 +19,8 @@ class DirectorService:
 
     def create(self, data):
         self.dao.create(data)
+        added_director_id = self.dao.create(data)[0].id
+        return added_director_id
 
     def update(self, data, did):
         self.dao.update(data, did)

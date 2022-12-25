@@ -24,6 +24,8 @@ class DirectorDAO:
     def create(self, data):
         with self.session.begin():
             self.session.add(Director(**data))
+            last = self._query().order_by(Director.id.desc()).limit(1).all()
+        return last
 
     def update(self, data, did):
         with self.session.begin():
