@@ -1,6 +1,7 @@
 
 from flask import Flask
 from flask_restx import Api
+from flask_migrate import Migrate
 
 from config import Config
 from setup_db import db
@@ -19,6 +20,7 @@ def create_app(config_object):
 
 def register_extensions(app):
     db.init_app(app)
+    Migrate(app=app, db=db, render_as_batch=True)
     api = Api(app)
     api.add_namespace(movie_ns)
     api.add_namespace(genre_ns)
