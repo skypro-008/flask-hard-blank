@@ -1,3 +1,4 @@
+# здесь контроллеры/хендлеры/представления для обработки запросов (flask ручки). сюда импортируются сервисы из пакета service
 from flask_restx import Resource, Namespace
 
 genre_ns = Namespace('genres')
