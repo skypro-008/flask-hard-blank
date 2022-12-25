@@ -18,9 +18,8 @@ class DirectorService:
         return serialize_director
 
     def create(self, data):
-        self.dao.create(data)
-        added_director_id = self.dao.create(data)[0].id
-        return added_director_id
+        added_director = self.dao.create(data)[0].id
+        return added_director
 
     def update(self, data, did):
         self.dao.update(data, did)
