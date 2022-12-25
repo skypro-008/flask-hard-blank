@@ -22,8 +22,8 @@ class GenreDAO:
         return genre
 
     def create(self, data):
-        self.session.add(Genre(**data))
-        self.session.commit()
+        with self.session.begin():
+            self.session.add(Genre(**data))
 
     def update(self, data, gid):
         with self.session.begin():

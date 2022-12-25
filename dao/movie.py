@@ -32,9 +32,9 @@ class MovieDAO:
         if filters.get('year') is not None:
             movies_query = movies_query.filter(Movie.year == filters.get('year'))
 
-        movie = movies_query.all()
+        movies = movies_query.all()
 
-        return movie
+        return movies
 
     def get_one(self, mid):
         movie = self._query().filter(Movie.id == mid).one()
@@ -42,8 +42,8 @@ class MovieDAO:
         return movie
 
     def create(self, data):
-        self.session.add(Movie(**data))
-        self.session.commit()
+        with self.session.begin():
+            self.session.add(Movie(**data))
 
     def update(self, data, mid):
         with self.session.begin():

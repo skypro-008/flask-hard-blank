@@ -22,8 +22,8 @@ class DirectorDAO:
         return director
 
     def create(self, data):
-        self.session.add(Director(**data))
-        self.session.commit()
+        with self.session.begin():
+            self.session.add(Director(**data))
 
     def update(self, data, did):
         with self.session.begin():
