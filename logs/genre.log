@@ -1,0 +1,2 @@
+[INFO]: [genre] 26-12-22 04:22:21: Full path to file [F:\PycharmProjects\Skypro\architecture\cinema\flask-hard-blank\views\genres.py] - function name delete(114) - Genre by id 11 was delete!
+[ERROR]: [genre] 26-12-22 04:22:24: Full path to file [F:\PycharmProjects\Skypro\architecture\cinema\flask-hard-blank\views\genres.py] - function name delete(117) - Genre with ID 11 not found

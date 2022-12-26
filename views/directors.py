@@ -32,7 +32,7 @@ class DirectorsView(Resource):
             return directors, 200
         except SomeError as e:
             logger.error(e)
-            return {}, 400
+            return {}, 500
 
     def post(self):
         """
@@ -44,11 +44,11 @@ class DirectorsView(Resource):
             # uploads director and returns its ID
             added_director_id = director_service.create(data)
             # log info
-            logger.info(f"{data.get('name')} was added!")
-            return f"{data.get('name')} was added!", 201, {'location': f'/directors/{added_director_id}'}
+            logger.info(f"Director {data.get('name')} was added!")
+            return f"Director {data.get('name')} was added!", 201, {'location': f'/directors/{added_director_id}'}
         except SomeError as e:
             logger.error(e)
-            return {}, 400
+            return {}, 500
 
 
 @director_ns.route('/<int:gid>')
@@ -69,7 +69,7 @@ class DirectorView(Resource):
             return director, 200
         except SomeError as e:
             logger.error(e)
-            return {}, 400
+            return {}, 404
 
     def put(self, gid):
         """
@@ -81,8 +81,8 @@ class DirectorView(Resource):
             # update
             director_service.update(data, gid)
             # log info
-            logger.info(f"{gid} was updated!")
-            return "updated!", 204
+            logger.info(f"Director by id {gid} was updated!")
+            return f"Director by id {gid} was updated!", 204
         except SomeError as e:
             logger.error(e)
             return {}, 400
@@ -97,8 +97,8 @@ class DirectorView(Resource):
             # update
             director_service.update(data, gid)
             # log info
-            logger.info(f"{gid} was partial updated!")
-            return "partial updated!", 204
+            logger.info(f"Director by id {gid} was partial updated!")
+            return f"Director by id {gid} was partial updated!", 204
         except SomeError as e:
             logger.error(e)
             return {}, 400
@@ -111,8 +111,8 @@ class DirectorView(Resource):
             # delete
             director_service.delete(gid)
             # log info
-            logger.info(f"{gid} was delete!")
-            return "deleted", 204
+            logger.info(f"Director by id {gid} was delete!")
+            return f"Director by id {gid} was delete!", 204
         except SomeError as e:
             logger.error(e)
-            return {}, 400
+            return {}, 404

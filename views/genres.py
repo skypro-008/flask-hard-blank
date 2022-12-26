@@ -32,7 +32,7 @@ class GenresView(Resource):
             return genres, 200
         except SomeError as e:
             logger.error(e)
-            return {}, 400
+            return {}, 500
 
     def post(self):
         """
@@ -44,11 +44,11 @@ class GenresView(Resource):
             # uploads genre and returns its ID
             added_genre_id = genre_service.create(data)
             # log info
-            logger.info(f"{data.get('name')} was added!")
-            return f"{data.get('name')} was added!", 201, {'location': f'/genres/{added_genre_id}'}
+            logger.info(f"Genre {data.get('name')} was added!")
+            return f"Genre {data.get('name')} was added!", 201, {'location': f'/genres/{added_genre_id}'}
         except SomeError as e:
             logger.error(e)
-            return {}, 400
+            return {}, 500
 
 
 @genre_ns.route('/<int:gid>')
@@ -69,7 +69,7 @@ class GenreView(Resource):
             return genre, 200
         except SomeError as e:
             logger.error(e)
-            return {}, 400
+            return {}, 404
 
     def put(self, gid):
         """
@@ -81,8 +81,8 @@ class GenreView(Resource):
             # update
             genre_service.update(data, gid)
             # log info
-            logger.info(f"{gid} was updated!")
-            return "updated!", 204
+            logger.info(f"Genre by id {gid} was updated!")
+            return f"Genre by id {gid} was updated!", 204
         except SomeError as e:
             logger.error(e)
             return {}, 400
@@ -97,8 +97,8 @@ class GenreView(Resource):
             # update
             genre_service.update(data, gid)
             # log info
-            logger.info(f"{gid} was partial updated!")
-            return "partial updated!", 204
+            logger.info(f"Genre by id {gid} was partial updated!")
+            return f"Genre by id {gid} was partial updated!", 204
         except SomeError as e:
             logger.error(e)
             return {}, 400
@@ -111,8 +111,8 @@ class GenreView(Resource):
             # delete
             genre_service.delete(gid)
             # log info
-            logger.info(f"{gid} was delete!")
-            return "deleted", 204
+            logger.info(f"Genre by id {gid} was delete!")
+            return f"Genre by id {gid} was delete!", 204
         except SomeError as e:
             logger.error(e)
-            return {}, 400
+            return {}, 404

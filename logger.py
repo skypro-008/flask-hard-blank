@@ -1,9 +1,7 @@
 import logging
 
-from flask import Flask
 
-
-def create_logger(app: Flask, name: str):
+def create_logger(app, name):
     """
     Create and configurate logger
     :param app: instance application Flask

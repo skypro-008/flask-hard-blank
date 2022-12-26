@@ -1,4 +1,9 @@
+import logging
+
 from dao.model.genre import Genre
+from my_exceptions.some_exception import SomeError
+
+logger = logging.getLogger('genre')
 
 
 class GenreDAO:
@@ -23,30 +28,36 @@ class GenreDAO:
         """
         get all genre from db by filters
         """
-        # all genres from database
-        genres = self._query().all()
-
-        return genres
+        try:
+            # all genres from database
+            genres = self._query().all()
+            return genres
+        except Exception as e:
+            raise SomeError(e)
 
     def get_one(self, gid):
         """
         get single genre by genre ID
         """
         # single genre
-        genre = self._query().filter(Genre.id == gid).one()
-
+        genre = self._query().filter(Genre.id == gid).first()
+        if not genre:
+            raise SomeError(f"Genre with ID {gid} not found")
         return genre
 
     def create(self, data):
         """
         upload new genre into database
         """
-        with self.session.begin():
-            # upload
-            self.session.add(Genre(**data))
-            # return data last added genre
-            last = self._query().order_by(Genre.id.desc()).limit(1).all()
-        return last
+        try:
+            with self.session.begin():
+                # upload
+                self.session.add(Genre(**data))
+                # return data last added genre
+                last = self._query().order_by(Genre.id.desc()).limit(1).all()
+            return last
+        except Exception as e:
+            raise SomeError(e)
 
     def update(self, data, gid):
         """
@@ -54,7 +65,9 @@ class GenreDAO:
         """
         with self.session.begin():
             # updating
-            self.session.query(Genre).filter(Genre.id == gid).update(data)
+            is_update = self.session.query(Genre).filter(Genre.id == gid).update(data)
+            if not is_update:
+                raise SomeError(f"Genre with ID {gid} not found")
 
     def delete(self, gid):
         """
@@ -62,4 +75,6 @@ class GenreDAO:
         """
         with self.session.begin():
             # deleting
-            self.session.query(Genre).filter(Genre.id == gid).delete()
+            is_delete = self.session.query(Genre).filter(Genre.id == gid).delete()
+            if not is_delete:
+                raise SomeError(f"Genre with ID {gid} not found")

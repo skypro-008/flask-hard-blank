@@ -34,7 +34,7 @@ class MoviesView(Resource):
             return movies, 200
         except SomeError as e:
             logger.error(e)
-            return {}, 400
+            return {}, 500
 
     def post(self):
         """
@@ -46,11 +46,11 @@ class MoviesView(Resource):
             # uploads movie and returns its ID
             added_movie_id = movie_service.create(data)
             # log info
-            logger.info(f"{data.get('title')} was added!")
-            return f"{data.get('title')} was added!", 201, {'location': f'/movies/{added_movie_id}'}
+            logger.info(f"Movie {data.get('title')} was added!")
+            return f"Movie {data.get('title')} was added!", 201, {'location': f'/movies/{added_movie_id}'}
         except SomeError as e:
             logger.error(e)
-            return {}, 400
+            return {}, 500
 
 
 @movie_ns.route('/<int:mid>')
@@ -84,7 +84,7 @@ class MovieView(Resource):
             movie_service.update(data, mid)
             # log info
             logger.info(f"Movie by id {mid} was updated!")
-            return f"{data['title']} was updated!", 204
+            return f"Movie by id {data['title']} was updated!", 204
         except SomeError as e:
             logger.error(e)
             return {}, 404
@@ -100,7 +100,7 @@ class MovieView(Resource):
             movie_service.update(data, mid)
             # log info
             logger.info(f"Movie by id {mid} was partial updated!")
-            return f"{data['title']} was updated!", 204
+            return f"Movie by id {data['title']} was updated!", 204
         except SomeError as e:
             logger.error(e)
             return {}, 404
@@ -114,7 +114,7 @@ class MovieView(Resource):
             movie_service.delete(mid)
             # log info
             logger.info(f"Movie by id {mid} was deleted!")
-            return f"{mid} movie was deleted!", 204
+            return f"Movie by id {mid} was deleted!", 204
         except SomeError as e:
             logger.error(e)
             return {}, 404
