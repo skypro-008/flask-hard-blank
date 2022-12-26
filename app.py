@@ -3,8 +3,9 @@ from flask import Flask
 from flask_restx import Api
 from flask_migrate import Migrate
 
-from config import Config
 from setup_db import db
+from config import Config
+from logger import create_logger
 
 from views.movies import movie_ns
 from views.genres import genre_ns
@@ -25,6 +26,9 @@ def register_extensions(app):
     api.add_namespace(genre_ns)
     api.add_namespace(director_ns)
     db.init_app(app)
+    create_logger(app, 'movie')
+    create_logger(app, 'genre')
+    create_logger(app, 'director')
 
 
 if __name__ == '__main__':

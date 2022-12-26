@@ -4,6 +4,9 @@ from setup_db import db
 
 
 class Director(db.Model):
+    """
+    Director model
+    """
     __tablename__ = "director"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -11,5 +14,8 @@ class Director(db.Model):
 
 
 class DirectorSchema(Schema):
+    """
+    Director schema for serialize
+    """
     id = fields.Int()
     name = fields.Str()
