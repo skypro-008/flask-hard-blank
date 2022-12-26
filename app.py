@@ -21,7 +21,13 @@ def create_app(config_object):
 
 def register_extensions(app):
     Migrate(app=app, db=db, render_as_batch=True)
-    api = Api(app)
+    api = Api(
+        app,
+        version='1.0',
+        title='Api cinema project',
+        doc='/docs',
+        prefix='/api'
+    )
     api.add_namespace(movie_ns)
     api.add_namespace(genre_ns)
     api.add_namespace(director_ns)
