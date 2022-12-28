@@ -12,15 +12,18 @@ class MovieService:
         """
         self.dao = dao
 
-    def get_all(self, filters):
+    def get_all_or_by_filters(self, filters):
         """
         Get all movies, serializes them and returns to the view
         """
-        # get filtered movies from dao
-        movies = self.dao.get_all(filters)
-        # serialize to json
-        serialize_movies = MovieSchema().dump(movies, many=True)
-        return serialize_movies
+        if filters:
+            # get filtered movies from dao
+            filtered_movies = self.dao.get_by_filters(filters)
+
+            return filtered_movies
+
+        # get all movies
+        return self.dao.get_all()
 
     def get_one(self, mid):
         """
@@ -28,15 +31,15 @@ class MovieService:
         """
         # get movie from dao by movie ID
         movie = self.dao.get_one(mid)
-        # serialize to json
-        serialize_movie = MovieSchema().dump(movie)
-        return serialize_movie
+
+        return movie
 
     def create(self, data):
         """
         uploads new movie into database and returns its id
         """
         added_movie = self.dao.create(data)[0].id
+
         return added_movie
 
     def update(self, data, mid):

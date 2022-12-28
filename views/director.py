@@ -3,6 +3,7 @@ import logging
 from flask import request
 from flask_restx import Resource, Namespace
 
+from dao.model.director import DirectorSchema
 # import configured service object
 from implemented import director_service
 # import custom error
@@ -12,6 +13,9 @@ from my_exceptions.some_exception import SomeError
 director_ns = Namespace('directors')
 # connection logger
 logger = logging.getLogger('director')
+# schemas
+director_schema = DirectorSchema()
+directors_schema = DirectorSchema(many=True)
 
 
 @director_ns.route('/')
@@ -28,10 +32,12 @@ class DirectorsView(Resource):
         """
         try:
             # serialized directors json data
-            directors = director_service.get_all()
+            directors = directors_schema.dump(director_service.get_all())
+
             return directors, 200
         except SomeError as e:
             logger.error(e)
+
             return {}, 500
 
     def post(self):
@@ -45,9 +51,15 @@ class DirectorsView(Resource):
             added_director_id = director_service.create(data)
             # log info
             logger.info(f"Director {data.get('name')} was added!")
-            return f"Director {data.get('name')} was added!", 201, {'location': f'/directors/{added_director_id}'}
+
+            return (
+                f"Director {data.get('name')} was added!",
+                201,
+                {'location': f'/directors/{added_director_id}'}
+            )
         except SomeError as e:
             logger.error(e)
+
             return {}, 500
 
 
@@ -65,10 +77,12 @@ class DirectorView(Resource):
         """
         try:
             # single director
-            director = director_service.get_one(gid)
+            director = director_schema.dump(director_service.get_one(gid))
+
             return director, 200
         except SomeError as e:
             logger.error(e)
+
             return {}, 404
 
     def put(self, gid):
@@ -82,9 +96,11 @@ class DirectorView(Resource):
             director_service.update(data, gid)
             # log info
             logger.info(f"Director by id {gid} was updated!")
+
             return f"Director by id {gid} was updated!", 204
         except SomeError as e:
             logger.error(e)
+
             return {}, 400
 
     def patch(self, gid):
@@ -98,9 +114,11 @@ class DirectorView(Resource):
             director_service.update(data, gid)
             # log info
             logger.info(f"Director by id {gid} was partial updated!")
+
             return f"Director by id {gid} was partial updated!", 204
         except SomeError as e:
             logger.error(e)
+
             return {}, 400
 
     def delete(self, gid):
@@ -112,7 +130,9 @@ class DirectorView(Resource):
             director_service.delete(gid)
             # log info
             logger.info(f"Director by id {gid} was delete!")
+
             return f"Director by id {gid} was delete!", 204
         except SomeError as e:
             logger.error(e)
+
             return {}, 404

@@ -1,5 +1,4 @@
 from dao.genre import GenreDAO
-from dao.model.genre import GenreSchema
 
 
 class GenreService:
@@ -19,9 +18,8 @@ class GenreService:
         """
         # get genres from dao
         genres = self.dao.get_all()
-        # serialize to json
-        serialize_genres = GenreSchema().dump(genres, many=True)
-        return serialize_genres
+
+        return genres
 
     def get_one(self, gid):
         """
@@ -29,15 +27,15 @@ class GenreService:
         """
         # get genre from dao by genre ID
         genre = self.dao.get_one(gid)
-        # serialize to json
-        serialize_genre = GenreSchema().dump(genre)
-        return serialize_genre
+
+        return genre
 
     def create(self, data):
         """
         uploads new genre into database and returns its id
         """
         added_genre = self.dao.create(data)[0].id
+
         return added_genre
 
     def update(self, data, gid):

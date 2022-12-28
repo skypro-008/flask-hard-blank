@@ -17,23 +17,17 @@ class DirectorDAO:
         """
         self.session = session
 
-    def _query(self):
-        """
-        query building
-        """
-        query = self.session.query(Director)
-
-        return query
-
     def get_all(self):
         """
         get all director from db by filters
         """
         try:
             # all directors from database
-            directors = self._query().all()
+            directors = self.session.query(Director).all()
+
             return directors
         except Exception as e:
+
             raise SomeError(e)
 
     def get_one(self, gid):
@@ -41,9 +35,10 @@ class DirectorDAO:
         get single director by director ID
         """
         # single director
-        director = self._query().filter(Director.id == gid).first()
+        director = self.session.query(Director).filter(Director.id == gid).first()
         if not director:
             raise SomeError(f"Director with ID {gid} not found")
+
         return director
 
     def create(self, data):
@@ -55,9 +50,11 @@ class DirectorDAO:
                 # upload
                 self.session.add(Director(**data))
                 # return data last added director
-                last = self._query().order_by(Director.id.desc()).limit(1).all()
+                last = self.session.query(Director).order_by(Director.id.desc()).limit(1).all()
+
             return last
         except Exception as e:
+
             raise SomeError(e)
 
     def update(self, data, gid):

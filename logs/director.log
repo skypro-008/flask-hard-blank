@@ -1,2 +1,3 @@
 [ERROR]: [director] 26-12-22 04:21:51: Full path to file [F:\PycharmProjects\Skypro\architecture\cinema\flask-hard-blank\views\directors.py] - function name delete(117) - Director with ID 222 not found
 [INFO]: [director] 26-12-22 04:22:07: Full path to file [F:\PycharmProjects\Skypro\architecture\cinema\flask-hard-blank\views\directors.py] - function name delete(114) - Director by id 11 was delete!
+[INFO]: [director] 28-12-22 12:22:46: Full path to file [F:\PycharmProjects\Skypro\architecture\cinema\flask-hard-blank\views\director.py] - function name post(53) - Director GAV GAVICH was added!

@@ -19,9 +19,8 @@ class DirectorService:
         """
         # get directors from dao
         directors = self.dao.get_all()
-        # serialize to json
-        serialize_directors = DirectorSchema().dump(directors, many=True)
-        return serialize_directors
+
+        return directors
 
     def get_one(self, did):
         """
@@ -29,15 +28,15 @@ class DirectorService:
         """
         # get director from dao by director ID
         director = self.dao.get_one(did)
-        # serialize to json
-        serialize_director = DirectorSchema().dump(director)
-        return serialize_director
+
+        return director
 
     def create(self, data):
         """
         uploads new director into database and returns its id
         """
         added_director = self.dao.create(data)[0].id
+
         return added_director
 
     def update(self, data, did):

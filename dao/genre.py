@@ -10,19 +10,12 @@ class GenreDAO:
     """
     database manager
     """
+
     def __init__(self, session):
         """
         session init
         """
         self.session = session
-
-    def _query(self):
-        """
-        query building
-        """
-        query = self.session.query(Genre)
-
-        return query
 
     def get_all(self):
         """
@@ -30,9 +23,11 @@ class GenreDAO:
         """
         try:
             # all genres from database
-            genres = self._query().all()
+            genres = self.session.query(Genre).all()
+
             return genres
         except Exception as e:
+
             raise SomeError(e)
 
     def get_one(self, gid):
@@ -40,9 +35,10 @@ class GenreDAO:
         get single genre by genre ID
         """
         # single genre
-        genre = self._query().filter(Genre.id == gid).first()
+        genre = self.session.query(Genre).filter(Genre.id == gid).first()
         if not genre:
             raise SomeError(f"Genre with ID {gid} not found")
+
         return genre
 
     def create(self, data):
@@ -54,9 +50,11 @@ class GenreDAO:
                 # upload
                 self.session.add(Genre(**data))
                 # return data last added genre
-                last = self._query().order_by(Genre.id.desc()).limit(1).all()
+                last = self.session.query(Genre).order_by(Genre.id.desc()).limit(1).all()
+
             return last
         except Exception as e:
+
             raise SomeError(e)
 
     def update(self, data, gid):

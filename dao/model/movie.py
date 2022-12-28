@@ -1,5 +1,7 @@
 from marshmallow import Schema, fields
 
+from dao.model.director import DirectorSchema
+from dao.model.genre import GenreSchema
 from setup_db import db
 
 
@@ -35,5 +37,5 @@ class MovieSchema(Schema):
     genre_id = fields.Int()
     director_id = fields.Int()
 
-    genre = fields.Str()
-    director = fields.Str()
+    genre = fields.Nested(GenreSchema)
+    director = fields.Nested(DirectorSchema)

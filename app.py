@@ -7,9 +7,9 @@ from setup_db import db
 from config import Config
 from logger import create_logger
 
-from views.movies import movie_ns
-from views.genres import genre_ns
-from views.directors import director_ns
+from views.movie import movie_ns
+from views.genre import genre_ns
+from views.director import director_ns
 
 
 def create_app(config_object):

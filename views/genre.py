@@ -3,6 +3,7 @@ import logging
 from flask import request
 from flask_restx import Resource, Namespace
 
+from dao.model.genre import GenreSchema
 # import configured service object
 from implemented import genre_service
 # import custom error
@@ -12,6 +13,9 @@ from my_exceptions.some_exception import SomeError
 genre_ns = Namespace('genres')
 # connection logger
 logger = logging.getLogger('genre')
+# schemas
+genre_schema = GenreSchema()
+genres_schema = GenreSchema(many=True)
 
 
 @genre_ns.route('/')
@@ -28,11 +32,13 @@ class GenresView(Resource):
         """
         try:
             # serialized genres json data
-            genres = genre_service.get_all()
+            genres = genres_schema.dump(genre_service.get_all())
+
             return genres, 200
         except SomeError as e:
             logger.error(e)
-            return {}, 500
+
+            return [], 500
 
     def post(self):
         """
@@ -45,9 +51,15 @@ class GenresView(Resource):
             added_genre_id = genre_service.create(data)
             # log info
             logger.info(f"Genre {data.get('name')} was added!")
-            return f"Genre {data.get('name')} was added!", 201, {'location': f'/genres/{added_genre_id}'}
+
+            return (
+                f"Genre {data.get('name')} was added!",
+                201,
+                {'location': f'/genres/{added_genre_id}'}
+            )
         except SomeError as e:
             logger.error(e)
+
             return {}, 500
 
 
@@ -64,11 +76,13 @@ class GenreView(Resource):
         view single genre by genre ID
         """
         try:
-            # single genre
-            genre = genre_service.get_one(gid)
+            # serialized single genre
+            genre = genre_schema.dump(genre_service.get_one(gid))
+
             return genre, 200
         except SomeError as e:
             logger.error(e)
+
             return {}, 404
 
     def put(self, gid):
@@ -82,9 +96,11 @@ class GenreView(Resource):
             genre_service.update(data, gid)
             # log info
             logger.info(f"Genre by id {gid} was updated!")
+
             return f"Genre by id {gid} was updated!", 204
         except SomeError as e:
             logger.error(e)
+
             return {}, 400
 
     def patch(self, gid):
@@ -98,9 +114,11 @@ class GenreView(Resource):
             genre_service.update(data, gid)
             # log info
             logger.info(f"Genre by id {gid} was partial updated!")
+
             return f"Genre by id {gid} was partial updated!", 204
         except SomeError as e:
             logger.error(e)
+
             return {}, 400
 
     def delete(self, gid):
@@ -112,7 +130,9 @@ class GenreView(Resource):
             genre_service.delete(gid)
             # log info
             logger.info(f"Genre by id {gid} was delete!")
+
             return f"Genre by id {gid} was delete!", 204
         except SomeError as e:
             logger.error(e)
+
             return {}, 404
