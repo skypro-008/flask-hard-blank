@@ -63,11 +63,10 @@ class MovieDAO:
         try:
             with self.session.begin():
                 # upload
-                self.session.add(Movie(**data))
+                new_movie = Movie(**data)
+                self.session.add(new_movie)
                 # return data last added movie
-                last = self.session.order_by(Movie.id.desc()).limit(1).all()
-
-            return last
+            return new_movie
         except Exception as e:
 
             raise SomeError(e)
@@ -90,4 +89,4 @@ class MovieDAO:
             # deleting
             is_delete = self.session.query(Movie).filter(Movie.id == mid).delete()
             if not is_delete:
-                raise SomeError(f"Movie with ID {mid} not found")
+                raise SomeError(f"Movie with id {mid} not found")

@@ -48,11 +48,11 @@ class GenreDAO:
         try:
             with self.session.begin():
                 # upload
-                self.session.add(Genre(**data))
+                new_genre = Genre(**data)
                 # return data last added genre
-                last = self.session.query(Genre).order_by(Genre.id.desc()).limit(1).all()
+                self.session.add(new_genre)
 
-            return last
+            return new_genre
         except Exception as e:
 
             raise SomeError(e)

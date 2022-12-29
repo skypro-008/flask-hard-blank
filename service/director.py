@@ -35,9 +35,9 @@ class DirectorService:
         """
         uploads new director into database and returns its id
         """
-        added_director = self.dao.create(data)[0].id
+        new_director = self.dao.create(data)
 
-        return added_director
+        return new_director
 
     def update(self, data, did):
         """

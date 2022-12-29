@@ -48,14 +48,14 @@ class DirectorsView(Resource):
             # new director json data
             data = request.json
             # uploads director and returns its ID
-            added_director_id = director_service.create(data)
+            new_director = director_service.create(data)
             # log info
-            logger.info(f"Director {data.get('name')} was added!")
+            logger.info(f"Director {new_director.name} was added!")
 
             return (
-                f"Director {data.get('name')} was added!",
+                f"Director {new_director.name} was added!",
                 201,
-                {'location': f'/directors/{added_director_id}'}
+                {'location': f'/directors/{new_director.id}'}
             )
         except SomeError as e:
             logger.error(e)

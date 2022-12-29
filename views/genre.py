@@ -48,14 +48,14 @@ class GenresView(Resource):
             # new genre json data
             data = request.json
             # uploads genre and returns its ID
-            added_genre_id = genre_service.create(data)
+            new_genre = genre_service.create(data)
             # log info
-            logger.info(f"Genre {data.get('name')} was added!")
+            logger.info(f"Genre {new_genre.name} was added!")
 
             return (
-                f"Genre {data.get('name')} was added!",
+                f"Genre {new_genre.name} was added!",
                 201,
-                {'location': f'/genres/{added_genre_id}'}
+                {'location': f'/genres/{new_genre.id}'}
             )
         except SomeError as e:
             logger.error(e)

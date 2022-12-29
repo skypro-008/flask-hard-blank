@@ -53,14 +53,14 @@ class MoviesView(Resource):
             # new movie json data
             data = request.json
             # uploads movie and returns its ID
-            added_movie_id = movie_service.create(data)
+            new_movie = movie_service.create(data)
             # log info
-            logger.info(f"Movie {data.get('title')} was added!")
+            logger.info(f"Movie {new_movie.title} was added!")
 
             return (
                 f"Movie {data.get('title')} was added!",
                 201,
-                {'location': f'/movies/{added_movie_id}'}
+                {'location': f'/movies/{new_movie.id}'}
             )
         except SomeError as e:
             logger.error(e)

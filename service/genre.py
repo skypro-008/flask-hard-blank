@@ -34,9 +34,9 @@ class GenreService:
         """
         uploads new genre into database and returns its id
         """
-        added_genre = self.dao.create(data)[0].id
+        new_genre = self.dao.create(data)
 
-        return added_genre
+        return new_genre
 
     def update(self, data, gid):
         """

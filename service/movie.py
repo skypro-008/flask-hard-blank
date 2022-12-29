@@ -38,9 +38,9 @@ class MovieService:
         """
         uploads new movie into database and returns its id
         """
-        added_movie = self.dao.create(data)[0].id
+        new_movie = self.dao.create(data)
 
-        return added_movie
+        return new_movie
 
     def update(self, data, mid):
         """

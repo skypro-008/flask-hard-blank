@@ -48,11 +48,11 @@ class DirectorDAO:
         try:
             with self.session.begin():
                 # upload
-                self.session.add(Director(**data))
+                new_director = Director(**data)
                 # return data last added director
-                last = self.session.query(Director).order_by(Director.id.desc()).limit(1).all()
+                self.session.add(new_director)
 
-            return last
+            return new_director
         except Exception as e:
 
             raise SomeError(e)
