@@ -50,7 +50,7 @@ class MovieDAO:
         get single movie by movie ID
         """
         # single movie
-        movie = self.session.filter(Movie.id == mid).first()
+        movie = self.session.query(Movie).filter(Movie.id == mid).first()
         if not movie:
             raise SomeError(f"Movie with ID {mid} not found")
 
