@@ -52,4 +52,4 @@ class MovieService:
         """
         delete movie by movie ID
         """
-        self.dao.delete(mid)
+        return self.dao.delete(mid)

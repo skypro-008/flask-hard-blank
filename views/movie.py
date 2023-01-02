@@ -102,7 +102,7 @@ class MovieView(Resource):
             # log info
             logger.info(f"Movie by id {mid} was updated!")
 
-            return f"Movie by id {data['title']} was updated!", 204
+            return {}, 204
         except SomeError as e:
             logger.error(e)
 
@@ -120,7 +120,7 @@ class MovieView(Resource):
             # log info
             logger.info(f"Movie by id {mid} was partial updated!")
 
-            return f"Movie by id {data['title']} was updated!", 204
+            return {}, 204
         except SomeError as e:
             logger.error(e)
 
@@ -132,11 +132,11 @@ class MovieView(Resource):
         """
         try:
             # delete
-            movie_service.delete(mid)
+            deleted_movie = movie_service.delete(mid)
             # log info
-            logger.info(f"Movie by id {mid} was deleted!")
+            logger.info(f"Movie {deleted_movie.title} was deleted!")
 
-            return f"Movie by id {mid} was deleted!", 204
+            return {}, 204
         except SomeError as e:
             logger.error(e)
 
