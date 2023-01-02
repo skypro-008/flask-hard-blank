@@ -5,7 +5,7 @@ from flask_restx import Resource, Namespace
 
 from dao.model.director import DirectorSchema
 # import configured service object
-from implemented import director_service
+from helpers.implemented import director_service
 # import custom error
 from my_exceptions.some_exception import SomeError
 

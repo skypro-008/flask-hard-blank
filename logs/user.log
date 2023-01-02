@@ -1,0 +1,21 @@
+[ERROR]: [user] 02-01-23 15:36:51: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name get(40) - (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password, user.role AS user_role 
+FROM user]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[INFO]: [user] 02-01-23 21:53:04: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(51) - User TESTS was added!
+[INFO]: [user] 02-01-23 21:54:18: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(51) - User TERSRSRSRS was added!
+[INFO]: [user] 02-01-23 21:54:34: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name delete(130) - user TERSRSRSRS was deleted!
+[INFO]: [user] 02-01-23 22:34:29: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(51) - User test1 was added!
+[ERROR]: [user] 02-01-23 22:35:24: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name get(40) - (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password, user.role AS user_role 
+FROM user]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[ERROR]: [user] 02-01-23 22:35:39: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(59) - (sqlite3.OperationalError) no such table: user
+[SQL: INSERT INTO user (username, password, role) VALUES (?, ?, ?)]
+[parameters: ('test1', b'zdMSOgCCir9QsYLWAKNM1t1Hth28FCyZakLHIGGx9PM=', 'admin')]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[ERROR]: [user] 02-01-23 22:37:04: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(59) - (sqlite3.OperationalError) no such table: user
+[SQL: INSERT INTO user (username, password, role) VALUES (?, ?, ?)]
+[parameters: ('test1', b'zdMSOgCCir9QsYLWAKNM1t1Hth28FCyZakLHIGGx9PM=', 'admin')]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[INFO]: [user] 02-01-23 22:37:30: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(51) - User test1 was added!

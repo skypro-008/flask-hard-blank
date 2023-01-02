@@ -1,6 +1,6 @@
 import os
 
-from constants import LOG_DIR
+from helpers.constants import LOG_DIR
 
 
 class Config:
@@ -14,6 +14,7 @@ class Config:
     DEBUG = True
 
     # config log
+    USER_LOG_PATH = os.path.join(LOG_DIR, 'user.log')
     MOVIE_LOG_PATH = os.path.join(LOG_DIR, 'movie.log')
     GENRE_LOG_PATH = os.path.join(LOG_DIR, 'genre.log')
     DIRECTOR_LOG_PATH = os.path.join(LOG_DIR, 'director.log')

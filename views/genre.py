@@ -5,7 +5,7 @@ from flask_restx import Resource, Namespace
 
 from dao.model.genre import GenreSchema
 # import configured service object
-from implemented import genre_service
+from helpers.implemented import genre_service
 # import custom error
 from my_exceptions.some_exception import SomeError
 

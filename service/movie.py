@@ -1,5 +1,4 @@
 from dao.movie import MovieDAO
-from dao.model.movie import MovieSchema
 
 
 class MovieService:

@@ -20,3 +20,6 @@
 [ERROR]: [movie] 02-01-23 03:52:46: Full path to file [/home/mgd/PythonzProjects/skypro/rest_api/flask-hard-blank/views/movie.py] - function name delete(141) - Movie with id 3 not found
 [INFO]: [movie] 02-01-23 03:54:37: Full path to file [/home/mgd/PythonzProjects/skypro/rest_api/flask-hard-blank/views/movie.py] - function name delete(137) - Movie Джанго освобожденный was deleted!
 [INFO]: [movie] 02-01-23 03:56:00: Full path to file [/home/mgd/PythonzProjects/skypro/rest_api/flask-hard-blank/views/movie.py] - function name delete(137) - Movie Чикаго was deleted!
+[INFO]: [movie] 02-01-23 14:26:11: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/movie.py] - function name delete(137) - Movie ------- was deleted!
+[ERROR]: [movie] 02-01-23 14:26:20: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/movie.py] - function name get(89) - Movie with ID 21 not found
+[ERROR]: [movie] 02-01-23 21:52:48: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/movie.py] - function name post(66) - 'username' is an invalid keyword argument for Movie

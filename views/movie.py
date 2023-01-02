@@ -5,7 +5,7 @@ from flask_restx import Resource, Namespace
 
 from dao.model.movie import MovieSchema
 # import configured service object
-from implemented import movie_service
+from helpers.implemented import movie_service
 # import custom error
 from my_exceptions.some_exception import SomeError
 
@@ -58,9 +58,9 @@ class MoviesView(Resource):
             logger.info(f"Movie {new_movie.title} was added!")
 
             return (
-                f"Movie {data.get('title')} was added!",
+                f"Movie {new_movie.title} was added!",
                 201,
-                {'location': f'/movies/{new_movie.id}'}
+                {"location": f"/movies/{new_movie.id}"}
             )
         except SomeError as e:
             logger.error(e)

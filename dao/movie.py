@@ -88,7 +88,7 @@ class MovieDAO:
         with self.session.begin():
             # deleting
             movie_query = self.session.query(Movie).filter(Movie.id == mid)
-            movie_for_return = movie_query.one()
+            movie_for_return = movie_query.first()
             is_delete = movie_query.delete()
             if not is_delete:
                 raise SomeError(f"Movie with id {mid} not found")
