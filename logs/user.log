@@ -49,3 +49,6 @@ FROM user]
 [INFO]: [user] 03-01-23 03:25:16: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/helpers/decorators.py] - function name wrapper(27) - Invalid token type. Token must be a <class 'bytes'>
 [INFO]: [user] 03-01-23 03:25:58: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/helpers/decorators.py] - function name wrapper(27) - Invalid token type. Token must be a <class 'bytes'>
 [INFO]: [user] 03-01-23 03:36:11: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(55) - User tes11 was added!
+[INFO]: [user] 03-01-23 13:35:11: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/helpers/decorators.py] - function name wrapper(27) - Invalid header string: 'utf-8' codec can't decode byte 0x88 in position 6: invalid start byte
+[INFO]: [user] 03-01-23 14:04:57: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(55) - User tTEESTS was added!
+[INFO]: [user] 03-01-23 14:06:10: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name delete(134) - user tTEESTS was deleted!

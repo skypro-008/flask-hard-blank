@@ -5,7 +5,7 @@ from flask_restx import Resource, Namespace
 
 from dao.model.director import DirectorSchema
 # import decorators
-from helpers.decorators import auth_required
+from helpers.decorators import auth_required, admin_required
 # import configured service object
 from implemented import director_service
 # import custom error
@@ -42,6 +42,7 @@ class DirectorsView(Resource):
 
             return {}, 500
 
+    @admin_required
     def post(self):
         """
         view add new director
@@ -87,6 +88,7 @@ class DirectorView(Resource):
 
             return {}, 404
 
+    @admin_required
     def put(self, gid):
         """
         view update director by director ID
@@ -105,6 +107,7 @@ class DirectorView(Resource):
 
             return {}, 400
 
+    @admin_required
     def patch(self, gid):
         """
         view partial update director by director ID
@@ -123,6 +126,7 @@ class DirectorView(Resource):
 
             return {}, 400
 
+    @admin_required
     def delete(self, gid):
         """
         view delete director by director ID

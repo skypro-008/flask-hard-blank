@@ -4,6 +4,7 @@ from flask import request
 from flask_restx import Resource, Namespace
 
 from dao.model.user import UserSchema
+from helpers.decorators import admin_required, auth_required
 # import configured service object
 from implemented import user_service
 # import custom error
@@ -26,6 +27,8 @@ class UsersView(Resource):
     route '/users/'
     methods GET, POST
     """
+
+    @auth_required
     def get(self):
         """
         view all users
@@ -73,6 +76,7 @@ class UserView(Resource):
     methods GET, PUT, PATCH, DELETE
     """
 
+    @auth_required
     def get(self, uid):
         """
         view single user by user ID
@@ -123,6 +127,7 @@ class UserView(Resource):
 
             return {}, 404
 
+    @admin_required
     def delete(self, uid):
         """
         view delete user by user ID
