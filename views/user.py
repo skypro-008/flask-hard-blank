@@ -15,7 +15,7 @@ user_ns = Namespace("users")
 # connection logger
 logger = logging.getLogger("user")
 
-# chemas
+# schemas
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
@@ -91,6 +91,7 @@ class UserView(Resource):
 
             return {}, 404
 
+    @admin_required
     def put(self, uid):
         """
         view update user by user ID
@@ -109,6 +110,7 @@ class UserView(Resource):
 
             return {}, 404
 
+    @admin_required
     def patch(self, uid):
         """
         view partial update user by user ID

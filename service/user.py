@@ -50,7 +50,8 @@ class UserService:
         updates user by user ID
         """
         # converting a normal password to hash
-        data["password"] = self.get_hash(data["password"])
+        if "password" in data:
+            data["password"] = self.get_hash(data["password"])
         return self.dao.update(data, uid)
 
     def delete(self, uid):

@@ -52,3 +52,48 @@ FROM user]
 [INFO]: [user] 03-01-23 13:35:11: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/helpers/decorators.py] - function name wrapper(27) - Invalid header string: 'utf-8' codec can't decode byte 0x88 in position 6: invalid start byte
 [INFO]: [user] 03-01-23 14:04:57: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(55) - User tTEESTS was added!
 [INFO]: [user] 03-01-23 14:06:10: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name delete(134) - user tTEESTS was deleted!
+[INFO]: [user] 03-01-23 14:24:59: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User tTEESTS was added!
+[ERROR]: [user] 03-01-23 14:25:07: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(66) - (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
+[SQL: INSERT INTO user (username, password, role) VALUES (?, ?, ?)]
+[parameters: ('tTEESTS', b'Tmj0rgtBV4tV6SthR5NlZqoPSyPW/rt8Q165Gb8uDd0=', 'dolbauob')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[INFO]: [user] 03-01-23 14:25:19: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User tTEESTuuuS was added!
+[ERROR]: [user] 03-01-23 14:25:28: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(66) - (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
+[SQL: INSERT INTO user (username, password, role) VALUES (?, ?, ?)]
+[parameters: ('tTEESTuuuS', b'Tmj0rgtBV4tV6SthR5NlZqoPSyPW/rt8Q165Gb8uDd0=', 'dolbauob')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[ERROR]: [user] 03-01-23 14:26:06: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(66) - (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
+[SQL: INSERT INTO user (username, password, role) VALUES (?, ?, ?)]
+[parameters: ('tTEESTuuuS', b'Tmj0rgtBV4tV6SthR5NlZqoPSyPW/rt8Q165Gb8uDd0=', '1')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[ERROR]: [user] 03-01-23 14:26:19: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(66) - (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
+[SQL: INSERT INTO user (username, password, role) VALUES (?, ?, ?)]
+[parameters: ('tTEESTuuuS', b'YlIb/5erK4lB8YYxCyvkXjD/ths87s9jXTsxhiQDG/s=', '1')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[INFO]: [user] 03-01-23 14:26:53: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/helpers/decorators.py] - function name wrapper(27) - Invalid header string: 'utf-8' codec can't decode byte 0x88 in position 6: invalid start byte
+[INFO]: [user] 03-01-23 14:27:04: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/helpers/decorators.py] - function name wrapper(27) - Signature has expired
+[INFO]: [user] 03-01-23 14:27:07: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/helpers/decorators.py] - function name wrapper(27) - Signature has expired
+[INFO]: [user] 03-01-23 14:39:35: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name delete(139) - user test was deleted!
+[INFO]: [user] 03-01-23 14:39:38: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name delete(139) - user Tes1t was deleted!
+[INFO]: [user] 03-01-23 14:39:41: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name delete(139) - user test1 was deleted!
+[INFO]: [user] 03-01-23 14:39:42: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name delete(139) - user tes11 was deleted!
+[INFO]: [user] 03-01-23 14:39:43: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name delete(139) - user tTEESTS was deleted!
+[INFO]: [user] 03-01-23 14:39:45: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name delete(139) - user tTEESTuuuS was deleted!
+[INFO]: [user] 03-01-23 14:40:12: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User admin was added!
+[INFO]: [user] 03-01-23 14:40:24: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/helpers/decorators.py] - function name wrapper(27) - Invalid header string: 'utf-8' codec can't decode byte 0x88 in position 6: invalid start byte
+[INFO]: [user] 03-01-23 14:40:48: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User user1 was added!
+[INFO]: [user] 03-01-23 14:41:12: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name put(104) - User by id 2 was updated!
+[INFO]: [user] 03-01-23 14:41:24: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name put(104) - User by id 2 was updated!
+[INFO]: [user] 03-01-23 14:41:34: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name put(104) - User by id 2 was updated!
+[INFO]: [user] 03-01-23 14:42:40: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name put(104) - User by id 2 was updated!
+[INFO]: [user] 03-01-23 14:44:29: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name put(105) - User by id 2 was updated!
+[INFO]: [user] 03-01-23 14:50:48: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name put(105) - User by id 2 was updated!
+[INFO]: [user] 03-01-23 14:51:08: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name patch(124) - User by id 2 was partial updated!
+[INFO]: [user] 03-01-23 14:51:22: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name patch(124) - User by id 2 was partial updated!
+[INFO]: [user] 03-01-23 15:05:29: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User test was added!
+[INFO]: [user] 03-01-23 15:06:01: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User testeee was added!
+[INFO]: [user] 03-01-23 15:08:49: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User testeee was added!
+[INFO]: [user] 03-01-23 15:09:19: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User ADMIN was added!
+[INFO]: [user] 03-01-23 15:09:42: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User root was added!
+[INFO]: [user] 03-01-23 15:10:03: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User user was added!
+[INFO]: [user] 03-01-23 15:10:18: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User user1 was added!
