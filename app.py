@@ -6,6 +6,7 @@ from setup_db import db
 from config import Config
 from logger import create_logger
 
+from views.auth import auth_ns
 from views.user import user_ns
 from views.movie import movie_ns
 from views.genre import genre_ns
@@ -28,6 +29,7 @@ def register_extensions(app):
         doc='/docs',
         prefix='/api'
     )
+    api.add_namespace(auth_ns)
     api.add_namespace(user_ns)
     api.add_namespace(movie_ns)
     api.add_namespace(genre_ns)

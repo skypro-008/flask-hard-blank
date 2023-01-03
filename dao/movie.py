@@ -1,10 +1,5 @@
-import logging
-
 from dao.model.movie import Movie
 from my_exceptions.some_exception import SomeError
-
-
-logger = logging.getLogger('movie')
 
 
 class MovieDAO:

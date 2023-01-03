@@ -4,8 +4,10 @@ from flask import request
 from flask_restx import Resource, Namespace
 
 from dao.model.genre import GenreSchema
+# import decorators
+from helpers.decorators import auth_required, admin_required
 # import configured service object
-from helpers.implemented import genre_service
+from implemented import genre_service
 # import custom error
 from my_exceptions.some_exception import SomeError
 
@@ -26,6 +28,7 @@ class GenresView(Resource):
     methods GET, POST
     """
 
+    @auth_required
     def get(self):
         """
         view all genres
@@ -40,6 +43,7 @@ class GenresView(Resource):
 
             return [], 500
 
+    @admin_required
     def post(self):
         """
         view add new genre
@@ -71,6 +75,7 @@ class GenreView(Resource):
     methods GET, PUT, PATCH, DELETE
     """
 
+    @auth_required
     def get(self, gid):
         """
         view single genre by genre ID
@@ -85,6 +90,7 @@ class GenreView(Resource):
 
             return {}, 404
 
+    @admin_required
     def put(self, gid):
         """
         view update genre by genre ID
@@ -103,6 +109,7 @@ class GenreView(Resource):
 
             return {}, 400
 
+    @admin_required
     def patch(self, gid):
         """
         view partial update genre by genre ID
@@ -121,6 +128,7 @@ class GenreView(Resource):
 
             return {}, 400
 
+    @admin_required
     def delete(self, gid):
         """
         view delete genre by genre ID

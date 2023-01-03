@@ -1,9 +1,5 @@
-import logging
-
 from dao.model.director import Director
 from my_exceptions.some_exception import SomeError
-
-logger = logging.getLogger('director')
 
 
 class DirectorDAO:

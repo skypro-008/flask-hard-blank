@@ -4,8 +4,10 @@ from flask import request
 from flask_restx import Resource, Namespace
 
 from dao.model.movie import MovieSchema
+# import decorators
+from helpers.decorators import auth_required, admin_required
 # import configured service object
-from helpers.implemented import movie_service
+from implemented import movie_service
 # import custom error
 from my_exceptions.some_exception import SomeError
 
@@ -27,6 +29,7 @@ class MoviesView(Resource):
     methods GET, POST
     """
 
+    @auth_required
     def get(self):
         """
         view all movies
@@ -45,6 +48,7 @@ class MoviesView(Resource):
 
             return [], 500
 
+    @admin_required
     def post(self):
         """
         view add new movie
@@ -76,6 +80,7 @@ class MovieView(Resource):
     methods GET, PUT, PATCH, DELETE
     """
 
+    @auth_required
     def get(self, mid):
         """
         view single movie by movie ID
@@ -90,6 +95,7 @@ class MovieView(Resource):
 
             return {}, 404
 
+    @admin_required
     def put(self, mid):
         """
         view update movie by movie ID
@@ -108,6 +114,7 @@ class MovieView(Resource):
 
             return {}, 404
 
+    @admin_required
     def patch(self, mid):
         """
         view partial update movie by movie ID
@@ -126,6 +133,7 @@ class MovieView(Resource):
 
             return {}, 404
 
+    @admin_required
     def delete(self, mid):
         """
         view delete movie by movie ID

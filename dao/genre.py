@@ -1,9 +1,5 @@
-import logging
-
 from dao.model.genre import Genre
 from my_exceptions.some_exception import SomeError
-
-logger = logging.getLogger('genre')
 
 
 class GenreDAO:

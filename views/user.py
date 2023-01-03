@@ -4,17 +4,17 @@ from flask import request
 from flask_restx import Resource, Namespace
 
 from dao.model.user import UserSchema
-#
-from helpers.implemented import user_service
-#
+# import configured service object
+from implemented import user_service
+# import custom error
 from my_exceptions.some_exception import SomeError
 
-#
+# create namespace
 user_ns = Namespace("users")
-#
+# connection logger
 logger = logging.getLogger("user")
 
-#
+# chemas
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
@@ -31,6 +31,7 @@ class UsersView(Resource):
         view all users
         """
         try:
+            # serialized all or filtered users
             users = users_schema.dump(
                 user_service.get_all()
             )
@@ -46,8 +47,11 @@ class UsersView(Resource):
         view add new user
         """
         try:
+            # new user json data
             data = request.json
+            # uploads user and returns its ID
             new_user = user_service.create(data)
+            # log info
             logger.info(f"User {new_user.username} was added!")
 
             return (

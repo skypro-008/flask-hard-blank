@@ -4,8 +4,10 @@ from flask import request
 from flask_restx import Resource, Namespace
 
 from dao.model.director import DirectorSchema
+# import decorators
+from helpers.decorators import auth_required
 # import configured service object
-from helpers.implemented import director_service
+from implemented import director_service
 # import custom error
 from my_exceptions.some_exception import SomeError
 
@@ -25,7 +27,7 @@ class DirectorsView(Resource):
     route '/directors/'
     methods GET, POST
     """
-
+    @auth_required
     def get(self):
         """
         view all directors
@@ -70,7 +72,7 @@ class DirectorView(Resource):
     route '/directors/{director_id}'
     methods GET, PUT, PATCH, DELETE
     """
-
+    @auth_required
     def get(self, gid):
         """
         view single director by director ID
