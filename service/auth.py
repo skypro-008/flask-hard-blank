@@ -4,7 +4,7 @@ import datetime
 import jwt
 from flask import abort
 
-from helpers.constants import JWT_ALGO, JWT_SECRET
+from config import Config
 from service.user import UserService
 
 
@@ -17,13 +17,15 @@ class AuthService:
         Init service
         """
         self.user_service = user_service
+        self.JWT_ALGO = Config.JWT_ALGO
+        self.JWT_SECRET = Config.JWT_SECRET
 
-    def generate_tokens(self, username, password, is_refresh=False):
+    def generate_tokens(self, email, password, is_refresh=False):
         """
         Generate tokens
         """
-        # user data from db by username
-        user = self.user_service.get_by_username(username)
+        # user data from db by email
+        user = self.user_service.get_by_email(email)
 
         # if user not found
         if not user:
@@ -35,20 +37,20 @@ class AuthService:
                 abort(400)
 
         user_data = {
-            "username": username,
+            "email": email,
             "password": password,
-            "role": user.role
+            "name": user.name
         }
 
         # create 30-min tokens
         min30 = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
         user_data["exp"] = calendar.timegm(min30.timetuple())
-        access_token = jwt.encode(user_data, JWT_SECRET, algorithm=JWT_ALGO)
+        access_token = jwt.encode(user_data, self.JWT_SECRET, algorithm=self.JWT_ALGO)
 
         # create 10-days token
         days10 = datetime.datetime.utcnow() + datetime.timedelta(days=10)
         user_data["exp"] = calendar.timegm(days10.timetuple())
-        refresh_token = jwt.encode(user_data, JWT_SECRET, algorithm=JWT_ALGO)
+        refresh_token = jwt.encode(user_data, self.JWT_SECRET, algorithm=self.JWT_ALGO)
 
         # return created tokens
         return {
@@ -61,11 +63,11 @@ class AuthService:
         Refresh tokens
         """
         # decode data from tokens
-        user = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGO])
+        user = jwt.decode(token, self.JWT_SECRET, algorithms=[self.JWT_ALGO])
         # username form data
-        username = user.get("username")
+        email = user.get("email")
 
         # generate new tokens
-        return self.generate_tokens(username, None, is_refresh=True)
+        return self.generate_tokens(email, None, is_refresh=True)
 
 

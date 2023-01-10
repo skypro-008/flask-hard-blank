@@ -1,5 +1,8 @@
 from marshmallow import Schema, fields
+from sqlalchemy import Column, String, Integer, ForeignKey
+from sqlalchemy.orm import relationship
 
+from dao.model import GenreSchema
 from setup_db import db
 
 
@@ -9,10 +12,14 @@ class User(db.Model):
     """
     __tablename__ = "user"
 
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String, unique=True, nullable=False)
-    password = db.Column(db.String, nullable=False)
-    role = db.Column(db.String, default='user')
+    id = Column(Integer, primary_key=True)
+    email = Column(String, unique=True, nullable=False)
+    password = Column(String, nullable=False)
+    name = Column(String)
+    surname = Column(String)
+    favorite_genre = Column(String, ForeignKey("genre.name"))
+
+    genre = relationship("Genre")
 
 
 class UserSchema(Schema):
@@ -20,6 +27,10 @@ class UserSchema(Schema):
     User schema for serialize
     """
     id = fields.Int()
-    username = fields.Str()
+    email = fields.Str()
     password = fields.Str()
-    role = fields.Str()
+    name = fields.Str()
+    surname = fields.Str()
+    favorite_genre = fields.Str()
+
+    genre = fields.Nested(GenreSchema)

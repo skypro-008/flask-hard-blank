@@ -55,10 +55,10 @@ class UsersView(Resource):
             # uploads user and returns its ID
             new_user = user_service.create(data)
             # log info
-            logger.info(f"User {new_user.username} was added!")
+            logger.info(f"User {new_user.name} was added!")
 
             return (
-                f"User {new_user.username} was added!",
+                f"User {new_user.name} was added!",
                 201,
                 {"location": f"/users/{new_user.id}"}
             )
@@ -138,7 +138,7 @@ class UserView(Resource):
             # delete
             deleted_user = user_service.delete(uid)
             # log info
-            logger.info(f"user {deleted_user.username} was deleted!")
+            logger.info(f"user {deleted_user.name} was deleted!")
 
             return {}, 204
         except SomeError as e:

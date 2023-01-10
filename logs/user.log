@@ -97,3 +97,12 @@ FROM user]
 [INFO]: [user] 03-01-23 15:09:42: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User root was added!
 [INFO]: [user] 03-01-23 15:10:03: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User user was added!
 [INFO]: [user] 03-01-23 15:10:18: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User user1 was added!
+[ERROR]: [user] 11-01-23 01:04:36: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(66) - (sqlite3.OperationalError) no such table: user
+[SQL: INSERT INTO user (email, password, name, surname, favorite_genre) VALUES (?, ?, ?, ?, ?)]
+[parameters: ('test@test.su', b'Tmj0rgtBV4tV6SthR5NlZqoPSyPW/rt8Q165Gb8uDd0=', 'mgd', None, None)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[ERROR]: [user] 11-01-23 01:20:04: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(66) - (sqlite3.IntegrityError) UNIQUE constraint failed: user.email
+[SQL: INSERT INTO user (email, password, name, surname, favorite_genre) VALUES (?, ?, ?, ?, ?)]
+[parameters: ('test@test.su', b'Tmj0rgtBV4tV6SthR5NlZqoPSyPW/rt8Q165Gb8uDd0=', 'mgd', None, None)]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[INFO]: [user] 11-01-23 01:20:32: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User mgd was added!

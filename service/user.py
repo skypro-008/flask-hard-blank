@@ -2,8 +2,8 @@ import base64
 import hashlib
 import hmac
 
+import config
 from dao.user import UserDAO
-from helpers.constants import PWD_HASH_ITERATIONS, PWD_HASH_SALT
 
 
 class UserService:
@@ -16,6 +16,8 @@ class UserService:
         Init dao
         """
         self.dao = dao
+        self.PWD_HASH_ITERATIONS = config.Config.PWD_HASH_ITERATIONS
+        self.PWD_HASH_SALT = config.Config.PWD_HASH_SALT
 
     def get_all(self):
         """
@@ -31,11 +33,11 @@ class UserService:
         # get user from dao by user ID
         return self.dao.get_one(uid)
 
-    def get_by_username(self, username):
+    def get_by_email(self, email):
         """
         Get single user, serializes it and returns to the view
         """
-        return self.dao.get_by_username(username)
+        return self.dao.get_by_email(email)
 
     def create(self, data):
         """
@@ -68,8 +70,8 @@ class UserService:
         hash_digest = hashlib.pbkdf2_hmac(
             "sha256",
             password.encode("utf-8"),
-            PWD_HASH_SALT,
-            PWD_HASH_ITERATIONS
+            self.PWD_HASH_SALT,
+            self.PWD_HASH_ITERATIONS
         )
         # hash password
         return base64.b64encode(hash_digest)
@@ -84,8 +86,8 @@ class UserService:
         hash_digest = hashlib.pbkdf2_hmac(
             "sha256",
             other_password.encode("utf-8"),
-            PWD_HASH_SALT,
-            PWD_HASH_ITERATIONS
+            self.PWD_HASH_SALT,
+            self.PWD_HASH_ITERATIONS
         )
         # compare two hash password
         return hmac.compare_digest(decode_password, hash_digest)

@@ -18,7 +18,7 @@ class UserDAO:
         """
         try:
             # all users from database
-            users = self.session.query(User.id, User.username, User.role).all()
+            users = self.session.query(User.id, User.name, User.email).all()
 
             return users
         except Exception as e:
@@ -29,20 +29,20 @@ class UserDAO:
         get single user by user ID
         """
         # single user
-        user = self.session.query(User.id, User.username, User.role).filter(User.id == uid).first()
+        user = self.session.query(User.id, User.name, User.email).filter(User.id == uid).first()
         if not user:
             raise SomeError(f"User with ID {uid} not found")
 
         return user
 
-    def get_by_username(self, username):
+    def get_by_email(self, email):
         """
         get single user by username
         """
         # user by username
-        user = self.session.query(User).filter(User.username == username).first()
+        user = self.session.query(User).filter(User.email == email).first()
         if not user:
-            raise SomeError(f"User {username} not found")
+            raise SomeError(f"User {email} not found")
 
         return user
 

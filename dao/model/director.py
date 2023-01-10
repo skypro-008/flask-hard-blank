@@ -1,4 +1,5 @@
 from marshmallow import Schema, fields
+from sqlalchemy import Column, String, Integer
 
 from setup_db import db
 
@@ -9,8 +10,8 @@ class Director(db.Model):
     """
     __tablename__ = "director"
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(155))
+    id = Column(Integer, primary_key=True)
+    name = Column(String(155))
 
 
 class DirectorSchema(Schema):

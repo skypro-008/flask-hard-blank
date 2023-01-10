@@ -1,10 +1,19 @@
 import os
 
+import dotenv
+
 from helpers.constants import LOG_DIR
 
 
 class Config:
-    SECRET_HERE = '249y823r9v8238r9u'
+    dotenv.load_dotenv()
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+
+    PWD_HASH_SALT = os.environ.get("PWD_HASH_SALT").encode("utf-8")
+    PWD_HASH_ITERATIONS = int(os.environ.get("PWD_HASH_ITERATIONS"))
+
+    JWT_ALGO = os.environ.get("JWT_ALGO")
+    JWT_SECRET = os.environ.get("JWT_SECRET")
 
     SQLALCHEMY_DATABASE_URI = 'sqlite:///movies.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -13,7 +22,7 @@ class Config:
     JSON_AS_ASCII = False
     DEBUG = True
 
-    # config log
+    # configure log
     USER_LOG_PATH = os.path.join(LOG_DIR, 'user.log')
     MOVIE_LOG_PATH = os.path.join(LOG_DIR, 'movie.log')
     GENRE_LOG_PATH = os.path.join(LOG_DIR, 'genre.log')

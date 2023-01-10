@@ -2,8 +2,8 @@ import logging
 
 import jwt
 from flask import request, abort
-# import secret and algorithm
-from helpers.constants import JWT_SECRET, JWT_ALGO
+
+from config import Config
 
 logger = logging.getLogger("user")
 
@@ -22,7 +22,7 @@ def auth_required(func):
         token = data.environ.get("HTTP_AUTHORIZATION").replace("Bearer ", '')
         try:
             # user data from token
-            jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGO)
+            jwt.decode(token, Config.JWT_SECRET, algorithms=Config.JWT_ALGO)
         except Exception as e:
             logger.info(e)
             abort(401)
@@ -47,7 +47,7 @@ def admin_required(func):
         token = data.environ.get("HTTP_AUTHORIZATION").replace("Bearer ", '')
         try:
             # user data from token
-            user_data = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGO])
+            user_data = jwt.decode(token, Config.JWT_SECRET, algorithms=[Config.JWT_ALGO])
         except Exception as e:
             logger.info(e)
             abort(401)

@@ -1,4 +1,6 @@
 from marshmallow import Schema, fields
+from sqlalchemy import Column, String, Integer, Float, ForeignKey
+from sqlalchemy.orm import relationship
 
 from dao.model.director import DirectorSchema
 from dao.model.genre import GenreSchema
@@ -11,17 +13,17 @@ class Movie(db.Model):
     """
     __tablename__ = "movie"
 
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(155))
-    description = db.Column(db.String(155))
-    trailer = db.Column(db.String)
-    year = db.Column(db.Integer)
-    rating = db.Column(db.Float)
-    genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'))
-    director_id = db.Column(db.Integer, db.ForeignKey('director.id'))
+    id = Column(Integer, primary_key=True)
+    title = Column(String(155))
+    description = Column(String(155))
+    trailer = Column(String)
+    year = Column(Integer)
+    rating = Column(Float)
+    genre_id = Column(Integer, ForeignKey('genre.id'))
+    director_id = Column(Integer, ForeignKey('director.id'))
 
-    genre = db.relationship("Genre")
-    director = db.relationship("Director")
+    genre = relationship("Genre")
+    director = relationship("Director")
 
 
 class MovieSchema(Schema):

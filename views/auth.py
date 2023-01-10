@@ -20,13 +20,13 @@ class AuthsView(Resource):
         """
         # new user data
         user_data = request.json
-        username = user_data.get("username")
+        email = user_data.get("email")
         password = user_data.get("password")
 
-        if None in [username, password]:
+        if None in [email, password]:
             abort(400)
         # generate tokens for user
-        tokens = auth_service.generate_tokens(username, password)
+        tokens = auth_service.generate_tokens(email, password)
 
         return tokens, 201
 
