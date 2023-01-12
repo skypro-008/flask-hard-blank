@@ -1,3 +1,4 @@
+import config
 from dao.director import DirectorDAO
 
 
@@ -12,12 +13,17 @@ class DirectorService:
         """
         self.dao = dao
 
-    def get_all(self):
+    def get_all_or_by_filters(self, query_params):
         """
         Get all directors, serializes them and returns to the view
         """
-        # get directors from dao
-        directors = self.dao.get_all()
+        page = int(query_params.get("page", 0))
+        if page:
+            items_per_page = config.Config.ITEMS_PER_PAGE
+            directors = self.dao.get_by_filters(page, items_per_page)
+        else:
+            # get directors from dao
+            directors = self.dao.get_all()
 
         return directors
 

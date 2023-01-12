@@ -26,6 +26,10 @@ class GenreDAO:
 
             raise SomeError(e)
 
+    def get_by_filters(self, page, items_per_page):
+        genres = self.session.query(Genre).limit(items_per_page * page).offset((page - 1) * items_per_page).all()
+        return genres
+
     def get_one(self, gid):
         """
         get single genre by genre ID

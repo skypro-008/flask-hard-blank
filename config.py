@@ -22,6 +22,9 @@ class Config:
     JSON_AS_ASCII = False
     DEBUG = True
 
+    # paginate
+    ITEMS_PER_PAGE = 12
+
     # configure log
     USER_LOG_PATH = os.path.join(LOG_DIR, 'user.log')
     MOVIE_LOG_PATH = os.path.join(LOG_DIR, 'movie.log')

@@ -33,8 +33,9 @@ class DirectorsView(Resource):
         view all directors
         """
         try:
+            query_params = request.args
             # serialized directors json data
-            directors = directors_schema.dump(director_service.get_all())
+            directors = directors_schema.dump(director_service.get_all_or_by_filters(query_params))
 
             return directors, 200
         except SomeError as e:
@@ -42,7 +43,8 @@ class DirectorsView(Resource):
 
             return {}, 500
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def post(self):
         """
         view add new director
@@ -88,7 +90,8 @@ class DirectorView(Resource):
 
             return {}, 404
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def put(self, gid):
         """
         view update director by director ID
@@ -107,7 +110,8 @@ class DirectorView(Resource):
 
             return {}, 400
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def patch(self, gid):
         """
         view partial update director by director ID
@@ -126,7 +130,8 @@ class DirectorView(Resource):
 
             return {}, 400
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def delete(self, gid):
         """
         view delete director by director ID

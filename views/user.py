@@ -34,9 +34,10 @@ class UsersView(Resource):
         view all users
         """
         try:
+            query_params = request.args
             # serialized all or filtered users
             users = users_schema.dump(
-                user_service.get_all()
+                user_service.get_all_or_by_filters(query_params)
             )
 
             return users, 200
@@ -91,7 +92,8 @@ class UserView(Resource):
 
             return {}, 404
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def put(self, uid):
         """
         view update user by user ID
@@ -110,7 +112,8 @@ class UserView(Resource):
 
             return {}, 404
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def patch(self, uid):
         """
         view partial update user by user ID
@@ -129,7 +132,8 @@ class UserView(Resource):
 
             return {}, 404
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def delete(self, uid):
         """
         view delete user by user ID

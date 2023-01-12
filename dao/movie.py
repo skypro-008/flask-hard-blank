@@ -1,7 +1,7 @@
+import config
 from dao.model.movie import Movie
 from my_exceptions.some_exception import SomeError
-
-
+from sqlalchemy import desc
 class MovieDAO:
     """
     database manager
@@ -13,29 +13,33 @@ class MovieDAO:
         """
         self.session = session
 
-    def get_all(self):
+    def get_all(self, status=None):
         """
         get all movie from db by filters
         """
         try:
-            # raw query to the database
-            movies = self.session.query(Movie).all()
+            if status:
+                movies = self.session.query(Movie).order_by(desc(Movie.year)).all()
+            else:
+                # raw query to the database
+                movies = self.session.query(Movie).all()
 
             return movies
         except Exception as e:
 
             raise SomeError(e)
 
-    def get_by_filters(self, filters):
+    def get_by_filters(self, filters, page, items_per_page, status=None):
         try:
+            if status:
+                movies_query = self.session.query(Movie).order_by(desc(Movie.year))
+            else:
+                movies_query = self.session.query(Movie)
             # filtered data from database
-            movies_query = self.session.query(Movie).filter_by(
-                **{key: value for key, value in filters.items() if value is not None}
-            )
-
-            movies = movies_query.all()
-
-            return movies
+            movies_query = movies_query.filter_by(
+                **filters
+            ).limit(items_per_page * page).offset((page - 1) * items_per_page).all()
+            return movies_query
         except Exception as e:
 
             raise SomeError(e)

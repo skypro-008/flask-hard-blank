@@ -36,10 +36,10 @@ class MoviesView(Resource):
         """
         try:
             # filters from request parameters
-            filters = request.args
+            query_params = request.args
             # serialized all or filtered movies
             movies = movies_schema.dump(
-                movie_service.get_all_or_by_filters(filters)
+                movie_service.get_all_or_by_filters(query_params)
             )
 
             return movies, 200
@@ -48,7 +48,8 @@ class MoviesView(Resource):
 
             return [], 500
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def post(self):
         """
         view add new movie
@@ -114,7 +115,8 @@ class MovieView(Resource):
 
             return {}, 404
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def patch(self, mid):
         """
         view partial update movie by movie ID
@@ -133,7 +135,8 @@ class MovieView(Resource):
 
             return {}, 404
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def delete(self, mid):
         """
         view delete movie by movie ID

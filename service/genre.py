@@ -1,3 +1,4 @@
+import config
 from dao.genre import GenreDAO
 
 
@@ -12,12 +13,17 @@ class GenreService:
         """
         self.dao = dao
 
-    def get_all(self):
+    def get_all_or_by_filter(self, query_params):
         """
         Get all genres, serializes them and returns to the view
         """
+        page = int(query_params.get("page", 0))
+        if page:
+            items_per_page = config.Config.ITEMS_PER_PAGE
+            genres = self.dao.get_by_filters(page, items_per_page)
         # get genres from dao
-        genres = self.dao.get_all()
+        else:
+            genres = self.dao.get_all()
 
         return genres
 

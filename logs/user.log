@@ -106,3 +106,4 @@ FROM user]
 [parameters: ('test@test.su', b'Tmj0rgtBV4tV6SthR5NlZqoPSyPW/rt8Q165Gb8uDd0=', 'mgd', None, None)]
 (Background on this error at: https://sqlalche.me/e/14/gkpj)
 [INFO]: [user] 11-01-23 01:20:32: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User mgd was added!
+[INFO]: [user] 11-01-23 01:58:56: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/helpers/decorators.py] - function name wrapper(27) - Signature has expired

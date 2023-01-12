@@ -34,8 +34,9 @@ class GenresView(Resource):
         view all genres
         """
         try:
+            query_params = request.args
             # serialized genres json data
-            genres = genres_schema.dump(genre_service.get_all())
+            genres = genres_schema.dump(genre_service.get_all_or_by_filter(query_params))
 
             return genres, 200
         except SomeError as e:
@@ -43,7 +44,8 @@ class GenresView(Resource):
 
             return [], 500
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def post(self):
         """
         view add new genre
@@ -76,6 +78,7 @@ class GenreView(Resource):
     """
 
     @auth_required
+    # @admin_required
     def get(self, gid):
         """
         view single genre by genre ID
@@ -90,7 +93,8 @@ class GenreView(Resource):
 
             return {}, 404
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def put(self, gid):
         """
         view update genre by genre ID
@@ -109,7 +113,8 @@ class GenreView(Resource):
 
             return {}, 400
 
-    @admin_required
+    @auth_required
+    # @admin_required
     def patch(self, gid):
         """
         view partial update genre by genre ID

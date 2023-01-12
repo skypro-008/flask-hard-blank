@@ -26,6 +26,10 @@ class DirectorDAO:
 
             raise SomeError(e)
 
+    def get_by_filters(self, page, items_per_page):
+        directors = self.session.query(Director).limit(items_per_page * page).offset((page - 1) * items_per_page).all()
+        return directors
+
     def get_one(self, gid):
         """
         get single director by director ID
