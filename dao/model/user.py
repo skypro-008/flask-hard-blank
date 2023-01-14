@@ -17,7 +17,7 @@ class User(db.Model):
     password = Column(String, nullable=False)
     name = Column(String)
     surname = Column(String)
-    favorite_genre = Column(String, ForeignKey("genre.name"))
+    favorite_genre = Column(Integer, ForeignKey("genre.id"))
 
     genre = relationship("Genre")
 
@@ -31,6 +31,6 @@ class UserSchema(Schema):
     password = fields.Str()
     name = fields.Str()
     surname = fields.Str()
-    favorite_genre = fields.Str()
+    favorite_genre = fields.Int()
 
     genre = fields.Nested(GenreSchema)

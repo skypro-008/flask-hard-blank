@@ -2,6 +2,8 @@ import base64
 import hashlib
 import hmac
 
+import jwt
+
 import config
 from dao.user import UserDAO
 
@@ -21,7 +23,7 @@ class UserService:
 
     def get_all_or_by_filters(self, query_params):
         """
-        Get all users, serializes them and returns to the view
+        Get all users
         """
         page = int(query_params.get("page", 0))
         if page:
@@ -33,16 +35,35 @@ class UserService:
 
         return users
 
+    def get_user_data(self, data):
+        """
+        get user data
+        """
+        user_data = self.get_data_from_tokens(data)
+        user = self.dao.get_user_by_email(user_data.get("email"))
+        user.password = "*" * len(user_data.get("password"))
+        return user
+
+    def get_data_from_tokens(self, data):
+        """
+        return data extract from token
+        """
+        refresh_token = data.get("refresh_token")
+
+        data = jwt.decode(refresh_token, config.Config.JWT_SECRET, algorithms=[config.Config.JWT_ALGO])
+
+        return data
+
     def get_one(self, uid):
         """
-        Get single user, serializes it and returns to the view
+        Get single user
         """
         # get user from dao by user ID
         return self.dao.get_one(uid)
 
     def get_by_email(self, email):
         """
-        Get single user, serializes it and returns to the view
+        Get single user
         """
         return self.dao.get_by_email(email)
 
@@ -54,14 +75,29 @@ class UserService:
         data["password"] = self.get_hash(data["password"])
         return self.dao.create(data)
 
-    def update(self, data, uid):
+    def update(self, data):
         """
-        updates user by user ID
+        updates user by email
         """
-        # converting a normal password to hash
-        if "password" in data:
-            data["password"] = self.get_hash(data["password"])
-        return self.dao.update(data, uid)
+        email = self.get_data_from_tokens(data).get("email")
+        data.pop("refresh_token")
+        return self.dao.update(data, email)
+
+    def update_password(self, data):
+        """
+        set new password
+        """
+        user_data = self.get_data_from_tokens(data)
+        email = user_data.get("email")
+        hash_password_1 = self.get_hash(data.get("password_1"))
+        hash_password_2 = self.get_hash(data.get("password_2"))
+        if hash_password_1 == self.dao.get_user_by_email(email).password:
+            # password = {
+            #     "password": hash_password_2
+            # }
+            self.dao.password_update(email, hash_password_2)
+        else:
+            raise Exception
 
     def delete(self, uid):
         """

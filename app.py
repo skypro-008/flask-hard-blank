@@ -6,11 +6,11 @@ from setup_db import db
 from config import Config
 from logger import create_logger
 
-from views.auth import auth_ns
-from views.user import user_ns
-from views.movie import movie_ns
-from views.genre import genre_ns
-from views.director import director_ns
+from views.auth.auth import auth_ns
+from views.auth.user import user_ns
+from views.main.movie import movie_ns
+from views.main.genre import genre_ns
+from views.main.director import director_ns
 
 
 def create_app(config_obj):

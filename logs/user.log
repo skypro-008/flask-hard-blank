@@ -107,3 +107,20 @@ FROM user]
 (Background on this error at: https://sqlalche.me/e/14/gkpj)
 [INFO]: [user] 11-01-23 01:20:32: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(58) - User mgd was added!
 [INFO]: [user] 11-01-23 01:58:56: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/helpers/decorators.py] - function name wrapper(27) - Signature has expired
+[ERROR]: [user] 13-01-23 13:16:51: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/auth.py] - function name post(67) - (sqlite3.IntegrityError) UNIQUE constraint failed: user.email
+[SQL: INSERT INTO user (email, password, name, surname, favorite_genre) VALUES (?, ?, ?, ?, ?)]
+[parameters: ('new11@test.su', b'Tmj0rgtBV4tV6SthR5NlZqoPSyPW/rt8Q165Gb8uDd0=', None, None, None)]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[INFO]: [user] 13-01-23 13:20:28: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name put(107) - User by id 3 was updated!
+[INFO]: [user] 13-01-23 13:22:52: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/user.py] - function name post(59) - User TEST was added!
+[ERROR]: [user] 13-01-23 13:25:19: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/auth.py] - function name post(67) - (sqlite3.IntegrityError) UNIQUE constraint failed: user.email
+[SQL: INSERT INTO user (email, password, name, surname, favorite_genre) VALUES (?, ?, ?, ?, ?)]
+[parameters: ('test12333@test.su', b'S0gaYvvHJTMF/4+tTKN4kplnAMudGqHpDif8Ed/5FN0=', 'TEST', None, None)]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[ERROR]: [user] 14-01-23 15:28:29: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/auth/user.py] - function name get(71) - Query contains no columns with which to SELECT from.
+[INFO]: [user] 14-01-23 16:25:17: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/auth/user.py] - function name patch(85) - User by newuser@test.su was updated!
+[ERROR]: [user] 14-01-23 16:32:20: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/auth/user.py] - function name patch(89) - User with None not found
+[ERROR]: [user] 14-01-23 16:32:41: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/auth/user.py] - function name patch(89) - User with None not found
+[ERROR]: [user] 14-01-23 16:32:49: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/auth/user.py] - function name patch(89) - User with None not found
+[INFO]: [user] 14-01-23 16:42:28: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/auth/user.py] - function name patch(85) - User by None was updated!
+[INFO]: [user] 14-01-23 17:13:46: Full path to file [/home/mgd/PythonsProjects/skypro/rest_api/flask-hard-blank/views/auth/user.py] - function name patch(85) - User by None was updated!

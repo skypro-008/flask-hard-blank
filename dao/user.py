@@ -25,8 +25,23 @@ class UserDAO:
         except Exception as e:
             raise SomeError(e)
 
+    def get_user_by_email(self, email):
+        """
+        get user from db by email
+        """
+        try:
+            user = self.session.query(User).filter(User.email == email).first()
+
+            return user
+        except Exception as e:
+            raise SomeError(e)
+
     def get_by_filters(self, page, items_per_page):
-        users = self.session.query(User.id, User.name, User.email).limit(items_per_page * page).offset((page - 1) * items_per_page).all()
+        """
+        get filtered users
+        """
+        users = self.session.query(User.id, User.name, User.email).limit(items_per_page * page).offset(
+            (page - 1) * items_per_page).all()
         return users
 
     def get_one(self, uid):
@@ -66,15 +81,23 @@ class UserDAO:
         except Exception as e:
             raise SomeError(e)
 
-    def update(self, data, uid):
+    def update(self, data, email):
         """
         update user data by user ID
         """
         with self.session.begin():
             # updating
-            is_update = self.session.query(User).filter(User.id == uid).update(data)
+            is_update = self.session.query(User).filter(User.email == email).update(data)
             if not is_update:
-                raise SomeError(f"User with ID {uid} not found")
+                raise SomeError(f"User with {email} not found")
+
+    def password_update(self, email, password):
+        """
+        set new password
+        """
+        user = self.session.query(User).filter(User.email == email).first()
+        user.password = password
+        self.session.commit()
 
     def delete(self, uid):
         """
