@@ -1,0 +1,5 @@
+[INFO]: [genre] 26-12-22 04:22:21: Full path to file [F:\PycharmProjects\Skypro\architecture\cinema\flask-hard-blank\views\genres.py] - function name delete(114) - Genre by id 11 was delete!
+[ERROR]: [genre] 26-12-22 04:22:24: Full path to file [F:\PycharmProjects\Skypro\architecture\cinema\flask-hard-blank\views\genres.py] - function name delete(117) - Genre with ID 11 not found
+[ERROR]: [genre] 26-12-22 12:33:11: Full path to file [F:\PycharmProjects\Skypro\architecture\cinema\flask-hard-blank\views\genres.py] - function name post(50) - 'adsa' is an invalid keyword argument for Genre
+[ERROR]: [genre] 28-12-22 12:16:21: Full path to file [F:\PycharmProjects\Skypro\architecture\cinema\flask-hard-blank\views\genre.py] - function name get(39) - 'scoped_session' object has no attribute 'all'
+[INFO]: [genre] 28-12-22 12:22:02: Full path to file [F:\PycharmProjects\Skypro\architecture\cinema\flask-hard-blank\views\genre.py] - function name post(53) - Genre GAV GAVICH was added!
